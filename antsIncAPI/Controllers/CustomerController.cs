@@ -50,9 +50,7 @@ namespace antsIncAPI.Controllers
                 new Parameter("@LastName", customer.LastName),
                 new Parameter("@Phone", customer.Phone)                
             };
-
             bool result = DB.UpdateTable("ModifyCustomer", parameters);
-
             return new
             {
                 sucess = result,
@@ -61,6 +59,11 @@ namespace antsIncAPI.Controllers
             };
         }
 
+        /**
+         * Triggered by get request.
+         * Parameter _id: The customer DNI which invoices are retrieve.
+         * Returns that customer invoices from the DB. 
+         */
         [HttpGet]
         [Route("getCustomerInvoices")]
         public dynamic GetCustomerInvoices(string _id)
@@ -69,10 +72,8 @@ namespace antsIncAPI.Controllers
             {
                 new Parameter("@DNI", _id)
             };
-
             DataTable tInvoices = DB.RetriveTable("GetCustomerInvoices", parameters);
             string jsonInvoices = JsonConvert.SerializeObject(tInvoices);
-
             return new
             {
                 success = true,
