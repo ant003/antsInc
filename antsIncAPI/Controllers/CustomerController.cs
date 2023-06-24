@@ -23,9 +23,7 @@ namespace antsIncAPI.Controllers
         public dynamic GetAllCustomers()
         {
             DataTable tCustomer = DB.RetriveTable("GetAllCustomers");
-
             string jsonCustomer = JsonConvert.SerializeObject(tCustomer);
-
             return new
             {
                 success = true,
@@ -35,7 +33,6 @@ namespace antsIncAPI.Controllers
                     customer = JsonConvert.DeserializeObject<List<Customer>>(jsonCustomer)
                 }
             };
-
         }
         /**
          * Triggered by post request.
@@ -46,11 +43,20 @@ namespace antsIncAPI.Controllers
         [Route("modifyCustomer")]
         public dynamic ModifyCustomer(Customer customer)
         {
+            List<Parameter> parameters = new List<Parameter>()
+            {
+                new Parameter("@DNI", customer.DNI),
+                new Parameter("@FirstName", customer.FirstName),
+                new Parameter("@LastName", customer.LastName),
+                new Parameter("@Phone", customer.Phone)                
+            };
+
+            bool result = DB.UpdateTable("ModifyCustomer", parameters);
+
             return new
             {
-                sucess = true,
-                message = "Customer modified",
-                tryBack = customer.FirstName,
+                sucess = result,
+                message = result ? "Customer modified" : "Error, could not modify",
                 result = ""
             };
         }

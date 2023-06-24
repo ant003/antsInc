@@ -41,5 +41,40 @@ namespace antsIncAPI.Data
             }
             finally { connection.Close(); }
         }
+        /**
+         * Receives the storedProcedureName which is the same stored in 
+         * the database and a list with the parameters for such 
+         * stored procedure. If there is none, then it defaults null
+         * 
+         * It excutes the stored procedure and modify the table.
+         */
+        public static bool UpdateTable(string storedProcedureName, List<Parameter> parameters = null)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(storedProcedureName, connection);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                if (parameters != null)
+                {
+                    foreach (Parameter p in parameters)
+                    {
+                        cmd.Parameters.AddWithValue(p.Name, p.Value);
+                    }                   
+                }
+                int i = cmd.ExecuteNonQuery();
+                return (i > 0) ? true : false;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }
