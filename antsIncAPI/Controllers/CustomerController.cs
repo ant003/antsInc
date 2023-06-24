@@ -1,7 +1,11 @@
-﻿using antsIncAPI.Models;
+﻿using antsIncAPI.Data;
+using antsIncAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Data;
 using System.Net;
 using System.Numerics;
+using System.Text.Json.Serialization;
 
 namespace antsIncAPI.Controllers
 {
@@ -18,33 +22,19 @@ namespace antsIncAPI.Controllers
         [Route("getAllCustomers")]
         public dynamic GetAllCustomers()
         {
+            DataTable tCustomer = DB.RetriveTable("GetAllCustomers");
 
-            List<Customer> customers = new List<Customer>
+            string jsonCustomer = JsonConvert.SerializeObject(tCustomer);
+
+            return new
             {
-                new Customer
+                success = true,
+                message = "success",
+                result = new
                 {
-                    DNI = "19236845",
-                    FirstName = "Juan",
-                    LastName = "Martinez",
-                    Phone = "1594-3682"
-                },
-                new Customer
-                {
-                    DNI = "35789154",
-                    FirstName = "Marco",
-                    LastName = "Lopez",
-                    Phone = "2295-3665"
-                },
-                new Customer
-                {
-                    DNI = "14725836",
-                    FirstName = "Marta",
-                    LastName = "Sanchez",
-                    Phone = "3698-2358"
+                    customer = JsonConvert.DeserializeObject<List<Customer>>(jsonCustomer)
                 }
             };
-
-            return customers;
 
         }
         /**
