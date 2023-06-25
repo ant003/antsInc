@@ -35,5 +35,28 @@ namespace antsIncAPI.Controllers
                 }
             };
         }
+        /**
+         *  Triggered by post request.
+         *  Parameter _id: the invoice id which is to be deleted.
+         *  Returns a message about the delete successness.
+         */
+        [HttpPost]
+        [Route("deleteAnInvoice")]
+        public dynamic DeleteAnInvoice(string _id)
+        {
+            List<Parameter> parameters = new List<Parameter>()
+            {
+                new Parameter("@InvoiceID", _id)
+            };
+
+            bool status = DB.UpdateTable("DeleteAnInvoice", parameters);
+
+            return new
+            {
+                success = status,
+                message = status ? "Invoice deleted" : "Error, could not delte",
+                result = ""
+            };
+        }
     }
 }
