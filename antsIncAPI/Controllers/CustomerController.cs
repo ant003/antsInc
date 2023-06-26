@@ -16,7 +16,7 @@ namespace antsIncAPI.Controllers
         /**
          *  Triggered by get request.
          *  No parameters.
-         *  Returns the entire customer table from the DB.
+         *  Returns a customers list
          */
         [HttpGet]
         [Route("getAllCustomers")]
@@ -24,15 +24,7 @@ namespace antsIncAPI.Controllers
         {
             DataTable tCustomer = DB.RetriveTable("GetAllCustomers");
             string jsonCustomer = JsonConvert.SerializeObject(tCustomer);
-            return new
-            {
-                success = true,
-                message = "success",
-                result = new
-                {
-                    customer = JsonConvert.DeserializeObject<List<Customer>>(jsonCustomer)
-                }
-            };
+            return JsonConvert.DeserializeObject<List<Customer>>(jsonCustomer);
         }
         /**
          * Triggered by post request.
@@ -62,7 +54,7 @@ namespace antsIncAPI.Controllers
         /**
          * Triggered by get request.
          * Parameter _id: The customer DNI which invoices are retrieve.
-         * Returns that customer invoices from the DB. 
+         * Returns that customer invoices in a list from the DB. 
          */
         [HttpGet]
         [Route("getCustomerInvoices")]
@@ -74,15 +66,7 @@ namespace antsIncAPI.Controllers
             };
             DataTable tInvoices = DB.RetriveTable("GetCustomerInvoices", parameters);
             string jsonInvoices = JsonConvert.SerializeObject(tInvoices);
-            return new
-            {
-                success = true,
-                message = "success",
-                result = new
-                {
-                    customer = JsonConvert.DeserializeObject<List<Invoice>>(jsonInvoices)
-                }
-            };
+            return JsonConvert.DeserializeObject<List<Invoice>>(jsonInvoices);
         }
     }
 }
