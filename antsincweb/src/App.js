@@ -1,7 +1,9 @@
+import Customer from "./Customer";
 function App() {
   return (
       <div className="App">
-        <h1>Test</h1>
+          <h1>AntsINC</h1>
+        <Customer></Customer>
       </div>
   );
 }
