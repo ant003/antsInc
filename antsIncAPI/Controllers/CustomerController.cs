@@ -68,5 +68,23 @@ namespace antsIncAPI.Controllers
             string jsonInvoices = JsonConvert.SerializeObject(tInvoices);
             return JsonConvert.DeserializeObject<List<Invoice>>(jsonInvoices);
         }
+
+        /**
+         *  Triggered by get request.
+         *  Parameter DNI: the customer dni, from the customer retrieved.
+         *  Returns the customer corresponding with the dni
+         */
+        [HttpGet]
+        [Route("getACustomer")]
+        public dynamic GetAnInvoice(string dni)
+        {
+            List<Parameter> parameters = new List<Parameter>()
+            {
+                new Parameter("@DNI", dni)
+            };
+            DataTable tCustomer = DB.RetriveTable("GetACustomer", parameters);
+            string jsonCustomer = JsonConvert.SerializeObject(tCustomer);
+            return JsonConvert.DeserializeObject<List<Customer>>(jsonCustomer);
+        }
     }
 }
