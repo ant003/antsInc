@@ -15,8 +15,7 @@ const Customer = () => {
                         <th>Phone</th>
                     </tr>
                 </thead>
-                <tbody>
-                    
+                <tbody>   
                     {customers && customers.map(customer => (
                         <tr key={customer.dni}>
                             <td>{customer.dni}</td>
@@ -28,7 +27,6 @@ const Customer = () => {
                             </td>
                         </tr>
                     ))}
-              
                 </tbody>
             </table>
             
