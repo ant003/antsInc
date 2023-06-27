@@ -23,7 +23,9 @@ const Customer = () => {
                             <td>{customer.firstName}</td>
                             <td>{customer.lastName}</td>
                             <td>{customer.phone}</td>
-                            <button>See invoices</button>
+                            <td>
+                                <button>See invoices</button>
+                            </td>
                         </tr>
                     ))}
               
