@@ -29,7 +29,9 @@ const Customer = () => {
                                 </Link>  
                             </td>
                             <td>
-                                <button>See invoices</button>
+                                <Link to={`/invoice/${customer.dni}`}>
+                                    <button>See invoices</button>
+                                </Link>
                             </td>
                         </tr>
                     ))}

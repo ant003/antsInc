@@ -31,7 +31,7 @@ namespace antsIncAPI.Controllers
                 message = "success",
                 result = new
                 {
-                    customer = JsonConvert.DeserializeObject<List<Invoice>>(jsonInvoice)
+                    invoice = JsonConvert.DeserializeObject<List<Invoice>>(jsonInvoice)
                 }
             };
         }
