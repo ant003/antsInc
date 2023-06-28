@@ -29,6 +29,7 @@ namespace antsIncAPI.Controllers
         /**
          * Triggered by post request.
          * Parameter customer: a row for the database to update.
+         * Parameter oldDNI: the original DNI before update it (if applicable)
          * Returns a message with information about the request successness. 
          */
         [HttpPost]
