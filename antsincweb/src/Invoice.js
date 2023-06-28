@@ -12,15 +12,16 @@ const Invoice = () => {
      */
     const deleteInvoice = (e, invoiceID) => {
         e.preventDefault();
-
-        fetch(`https://localhost:7005/invoices/deleteAnInvoice?_id=${invoiceID}`, {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" }
-        })
-            .then(() => {
-                console.log('Invoice deleted');
-                setDeleted(true);
+        if (window.confirm("Are you sure to delete this invoice?")) {
+            fetch(`https://localhost:7005/invoices/deleteAnInvoice?_id=${invoiceID}`, {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" }
             })
+                .then(() => {
+                    console.log('Invoice deleted');
+                    setDeleted(true);
+                })
+        }        
     }
 
     return (
