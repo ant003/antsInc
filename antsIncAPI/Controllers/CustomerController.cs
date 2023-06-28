@@ -33,11 +33,12 @@ namespace antsIncAPI.Controllers
          */
         [HttpPost]
         [Route("modifyCustomer")]
-        public dynamic ModifyCustomer(Customer customer)
+        public dynamic ModifyCustomer(Customer customer, string oldDNI)
         {
             List<Parameter> parameters = new List<Parameter>()
             {
-                new Parameter("@DNI", customer.DNI),
+                new Parameter("@CurrentDNI", oldDNI),
+                new Parameter("@NewDNI", customer.DNI),
                 new Parameter("@FirstName", customer.FirstName),
                 new Parameter("@LastName", customer.LastName),
                 new Parameter("@Phone", customer.Phone)                

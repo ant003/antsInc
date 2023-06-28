@@ -13,7 +13,7 @@ const ModifyCustomer = () => {
         dni: '',
         firstName: '',
         lastName: '',
-        phone: ''
+        phone: '',
     });
 
     useEffect(() => {
@@ -44,7 +44,7 @@ const ModifyCustomer = () => {
         e.preventDefault();
         setIsPending(true);
 
-        fetch('https://localhost:7005/customers/modifyCustomer', {
+        fetch(`https://localhost:7005/customers/modifyCustomer?oldDNI=${id}`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formValues)
