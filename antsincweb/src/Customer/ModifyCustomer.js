@@ -38,7 +38,7 @@ const ModifyCustomer = () => {
 
     /**
      * Called when the form button is clicked
-     * Does a POST request to send the data to the json database
+     * Does a POST request to send the data to the database
      */
     const handleSubmit = (e) => {
         e.preventDefault();
