@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Customer from "./Customer";
 import Home from './Home';
-import ModifyCustomer from './Customer/ModifyCustomer';
+import ModifyCustomer from './ModifyCustomer/ModifyCustomer';
 import Invoice from './Invoice';
 function App() {
     return (
